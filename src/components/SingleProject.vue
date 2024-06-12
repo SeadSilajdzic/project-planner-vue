@@ -38,7 +38,9 @@ export default {
             <h3 @click="toggleDetails">{{ project.title }}</h3>
 
             <div class="icons">
-                <span class="material-icons">edit</span>
+                <router-link :to="{name:'editProject', params: {id: project.id}}">
+                    <span class="material-icons">edit</span>
+                </router-link>
                 <span @click="deleteProject" class="material-icons">delete</span>
                 <span @click="toggleProjectComplete" class="material-icons" :class="{ tick: project.complete }">done</span>
             </div>
