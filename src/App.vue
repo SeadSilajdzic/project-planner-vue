@@ -1,4 +1,5 @@
 <template>
+    <Navbar/>
     <router-view/>
 </template>
 
@@ -6,6 +7,7 @@
 body {
     background: #f2f2f2;
 }
+
 #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -15,3 +17,10 @@ body {
     color: #555;
 }
 </style>
+<script>
+import Navbar from "@/components/Navbar.vue";
+
+export default {
+    components: {Navbar}
+}
+</script>
