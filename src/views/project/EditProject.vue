@@ -24,11 +24,10 @@ export default {
             let project = {
                 title: this.title,
                 details: this.details,
-                complete: false
             }
 
             fetch(this.uri, {
-                method: "POST",
+                method: "PATCH",
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(project)
             })
