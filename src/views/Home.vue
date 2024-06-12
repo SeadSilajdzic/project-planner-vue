@@ -1,13 +1,15 @@
 <script>
 import SingleProject from "@/components/SingleProject.vue";
+import FilterNav from "@/components/FilterNav.vue";
 
 export default {
     name: 'Home',
-    components: {SingleProject},
+    components: {FilterNav, SingleProject},
     data() {
         return {
             projects: [],
-            uri: "http://localhost:3000/projects/"
+            uri: "http://localhost:3000/projects/",
+            currentFilter: 'all'
         }
     },
     mounted() {
@@ -30,15 +32,28 @@ export default {
 
             p.complete = !p.complete;
         }
+    },
+    computed: {
+        filteredProjects() {
+            if(this.currentFilter === 'completed') {
+                return this.projects.filter(project => project.complete)
+            }
+
+            if(this.currentFilter === 'uncompleted') {
+                return this.projects.filter(project => !project.complete)
+            }
+
+            return this.projects;
+        }
     }
 }
 </script>
 
 <template>
     <div class="home">
-        <h1>Homepage</h1>
+        <FilterNav @filterChange="currentFilter = $event" :current="currentFilter"/>
         <div v-if="projects.length">
-            <div v-for="project in projects" :key="project.id">
+            <div v-for="project in filteredProjects" :key="project.id">
                 <SingleProject :project="project" @toggleProjectComplete="handleToggleProjectComplete"
                                @deleteProject="handleDeleteProject"/>
             </div>
