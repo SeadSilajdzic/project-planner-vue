@@ -6,11 +6,12 @@ export default {
     components: {SingleProject},
     data() {
         return {
-            projects: []
+            projects: [],
+            uri: "http://localhost:3000/projects/"
         }
     },
     mounted() {
-        fetch("http://localhost:3000/projects")
+        fetch(this.uri)
             .then(response => response.json())
             .then(response => this.projects = response)
             .catch(error => console.log(error));
