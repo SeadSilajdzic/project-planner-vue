@@ -34,13 +34,13 @@ export default {
 }
 </script>
 
-
 <template>
     <div class="home">
         <h1>Homepage</h1>
         <div v-if="projects.length">
             <div v-for="project in projects" :key="project.id">
-                <SingleProject :project="project" @toggleProjectComplete="handleToggleProjectComplete" @deleteProject="handleDeleteProject"/>
+                <SingleProject :project="project" @toggleProjectComplete="handleToggleProjectComplete"
+                               @deleteProject="handleDeleteProject"/>
             </div>
         </div>
     </div>
